@@ -1,15 +1,23 @@
-Die steve;
 
 void setup()
 {
 	noLoop();
 	size(900,600);
-	steve = new Die(450,300);
+	background(0);
+
 }
 void draw()
 {
-	steve.show();
-	steve.roll();
+
+	for ( int x= 0; x<900; x+=50){
+
+		for (int y=50; y<600; y+=50){
+		Die steve = new Die(x,y);
+		steve.show();
+		steve.roll();
+		}
+	}
+
 	//your code here
 }
 void mousePressed()
@@ -29,19 +37,54 @@ class Die //models one single dice cube
 	}
 	void roll()
 	{
-		face = (int)(Math.random() *1);
+		face = (int)(Math.random()*6)+1;
+		noStroke();
+		fill(((int)(Math.random()*255)),((int)(Math.random()*255)),((int)(Math.random()*255)));
 		
-		//your code here
+		if (face == 1){
+			ellipse (xPos+26, yPos +25, 10, 10);
+		}
+		if (face == 2){
+			ellipse (xPos+15, yPos+25, 10,10);
+			ellipse (xPos+38, yPos+25, 10,10);
+		}
+		if (face == 3){
+			ellipse (xPos+12, yPos+25, 10,10);
+			ellipse (xPos+26, yPos +25, 10, 10);
+			ellipse (xPos+40, yPos+25, 10,10);
+		}
+		if (face == 4){
+			ellipse (xPos+12, yPos+15, 10,10);
+			ellipse (xPos+12, yPos+35, 10,10);
+			ellipse (xPos+40, yPos+15, 10,10);
+			ellipse (xPos+40, yPos+35, 10,10);
+		}
+		if (face == 5){
+			ellipse (xPos+12, yPos+13, 10,10);
+			ellipse (xPos+12, yPos+37, 10,10);
+			ellipse (xPos+40, yPos+13, 10,10);
+			ellipse (xPos+40, yPos+37, 10,10);
+			ellipse (xPos+26, yPos +25, 10, 10);
+		}
+		if (face == 6){
+			ellipse (xPos+12, yPos+12, 10,10);
+			ellipse (xPos+12, yPos+40, 10,10);
+			ellipse (xPos+12, yPos+26, 10,10);
+			ellipse (xPos+40, yPos+12, 10,10);
+			ellipse (xPos+40, yPos+40, 10,10);
+			ellipse (xPos+40, yPos +26, 10, 10);
+		}
+		
 	}
 	void show()
 	{
 		fill(0);
+		stroke(81, 81, 81);
 		rect (xPos,yPos, 50,50);
+		
+	}
+	void count (){
 		fill(255);
-		if (face == 1){
-
-			ellipse (xPos, yPos, 10,10);
-		}
-		//your code here
+		text ("TOTAL:", 300, 0);
 	}
 }
